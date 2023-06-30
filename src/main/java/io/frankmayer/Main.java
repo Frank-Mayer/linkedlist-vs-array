@@ -9,7 +9,7 @@ public class Main {
   private static final long[] llInsTimes = new long[10240];
   private static final long[] aDelTimes = new long[10240];
   private static final long[] aInsTimes = new long[10240];
-  private static final int size = 2048;
+  private static final int size = 4096;
 
   public static void main(String[] args) {
     final var a = Main.createA(4);
@@ -64,30 +64,34 @@ public class Main {
     for (var i = 0; i < Main.llDelTimes.length; ++i) {
       final var ll = Main.createLL(Main.size);
       final var start = System.nanoTime();
-      ll.remove(1000);
-      ll.remove(69);
-      ll.remove(420);
-      ll.remove(2000);
-      ll.remove(42);
-      ll.remove(13);
-      ll.remove(69);
-      ll.remove(720);
-      ll.remove(850);
+      for (var j = 0; j != 10; ++j) {
+        ll.remove(1000);
+        ll.remove(69);
+        ll.remove(420);
+        ll.remove(2000);
+        ll.remove(42);
+        ll.remove(13);
+        ll.remove(69);
+        ll.remove(720);
+        ll.remove(850);
+      }
       final var end = System.nanoTime();
       Main.llDelTimes[i] = end - start;
     }
     for (var i = 0; i < Main.llInsTimes.length; ++i) {
       final var ll = Main.createLL(Main.size);
       final var start = System.nanoTime();
-      ll.add(1000, _69420);
-      ll.add(69, _42);
-      ll.add(420, _69);
-      ll.add(2000, _69420);
-      ll.add(42, _420);
-      ll.add(13, _69);
-      ll.add(69, _69420);
-      ll.add(720, _42);
-      ll.add(850, _420);
+      for (var j = 0; j != 10; ++j) {
+        ll.add(1000, _69420);
+        ll.add(69, _42);
+        ll.add(420, _69);
+        ll.add(2000, _69420);
+        ll.add(42, _420);
+        ll.add(13, _69);
+        ll.add(69, _69420);
+        ll.add(720, _42);
+        ll.add(850, _420);
+      }
       final var end = System.nanoTime();
       Main.llInsTimes[i] = end - start;
     }
@@ -98,30 +102,34 @@ public class Main {
     for (var i = 0; i < Main.aDelTimes.length; ++i) {
       final var arr = Main.createA(Main.size);
       final var start = System.nanoTime();
-      Main.removeArrIdx(arr, 1000);
-      Main.removeArrIdx(arr, 69);
-      Main.removeArrIdx(arr, 420);
-      Main.removeArrIdx(arr, 2000);
-      Main.removeArrIdx(arr, 42);
-      Main.removeArrIdx(arr, 13);
-      Main.removeArrIdx(arr, 69);
-      Main.removeArrIdx(arr, 720);
-      Main.removeArrIdx(arr, 850);
+      for (var j = 0; j != 10; ++j) {
+        Main.removeArrIdx(arr, 1000);
+        Main.removeArrIdx(arr, 69);
+        Main.removeArrIdx(arr, 420);
+        Main.removeArrIdx(arr, 2000);
+        Main.removeArrIdx(arr, 42);
+        Main.removeArrIdx(arr, 13);
+        Main.removeArrIdx(arr, 69);
+        Main.removeArrIdx(arr, 720);
+        Main.removeArrIdx(arr, 850);
+      }
       final var end = System.nanoTime();
       Main.aDelTimes[i] = end - start;
     }
     for (var i = 0; i < Main.aInsTimes.length; ++i) {
       final var arr = Main.createA(Main.size);
       final var start = System.nanoTime();
-      Main.insertArrIdx(arr, 1000, _69420);
-      Main.insertArrIdx(arr, 69, _42);
-      Main.insertArrIdx(arr, 420, _69);
-      Main.insertArrIdx(arr, 2000, _69420);
-      Main.insertArrIdx(arr, 42, _420);
-      Main.insertArrIdx(arr, 13, _69);
-      Main.insertArrIdx(arr, 69, _69420);
-      Main.insertArrIdx(arr, 720, _42);
-      Main.insertArrIdx(arr, 850, _420);
+      for (var j = 0; j != 10; ++j) {
+        Main.insertArrIdx(arr, 1000, _69420);
+        Main.insertArrIdx(arr, 69, _42);
+        Main.insertArrIdx(arr, 420, _69);
+        Main.insertArrIdx(arr, 2000, _69420);
+        Main.insertArrIdx(arr, 42, _420);
+        Main.insertArrIdx(arr, 13, _69);
+        Main.insertArrIdx(arr, 69, _69420);
+        Main.insertArrIdx(arr, 720, _42);
+        Main.insertArrIdx(arr, 850, _420);
+      }
       final var end = System.nanoTime();
       Main.aInsTimes[i] = end - start;
     }
