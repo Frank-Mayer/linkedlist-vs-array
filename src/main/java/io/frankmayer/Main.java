@@ -19,116 +19,67 @@ public class Main {
     final var _42 = new Obj(42);
 
     // warmup
-    for (var i = 0; i < 1024; ++i) {
-      final var ll = Main.createLL(Main.size);
-      ll.remove(1000);
-      ll.remove(69);
-      ll.remove(420);
-      ll.remove(2000);
-      ll.remove(42);
-      ll.remove(13);
-      ll.remove(69);
-      ll.remove(720);
-      ll.remove(850);
-      ll.add(1000, _69420);
-      ll.add(69, _42);
-      ll.add(420, _69);
-      ll.add(2000, _69420);
-      ll.add(42, _420);
-      ll.add(13, _69);
-      ll.add(69, _69420);
-      ll.add(720, _42);
-      ll.add(850, _420);
-      final var arr = Main.createA(Main.size);
-      Main.removeArrIdx(arr, 1000);
-      Main.removeArrIdx(arr, 69);
-      Main.removeArrIdx(arr, 420);
-      Main.removeArrIdx(arr, 2000);
-      Main.removeArrIdx(arr, 42);
-      Main.removeArrIdx(arr, 13);
-      Main.removeArrIdx(arr, 69);
-      Main.removeArrIdx(arr, 720);
-      Main.removeArrIdx(arr, 850);
-      Main.insertArrIdx(arr, 1000, _69420);
-      Main.insertArrIdx(arr, 69, _42);
-      Main.insertArrIdx(arr, 420, _69);
-      Main.insertArrIdx(arr, 2000, _69420);
-      Main.insertArrIdx(arr, 42, _420);
-      Main.insertArrIdx(arr, 13, _69);
-      Main.insertArrIdx(arr, 69, _69420);
-      Main.insertArrIdx(arr, 720, _42);
-      Main.insertArrIdx(arr, 850, _420);
+    System.out.println("Warmup");
+    try {
+      for (var i = 0; i < 1024; ++i) {
+        final var ll = Main.createLL(Main.size);
+        for (int j = Main.size - 1; j > 0; j -= 4) {
+          ll.remove(j);
+        }
+        for (int j = 0; j < Main.size - 4; j += 4) {
+          ll.add(j, _69);
+        }
+        final var arr = Main.createA(Main.size);
+        for (int j = Main.size - 1; j > 0; j -= 4) {
+          Main.removeArrIdx(arr, j);
+        }
+        for (int j = 0; j < Main.size - 4; j += 4) {
+          Main.insertArrIdx(arr, j, _69420);
+        }
+      }
+    } catch (Exception e) {
+      e.printStackTrace(System.err);
     }
 
     // actual test
+    System.out.println("Test");
+    System.out.println("LinkedList delete");
     for (var i = 0; i < Main.llDelTimes.length; ++i) {
       final var ll = Main.createLL(Main.size);
       final var start = System.nanoTime();
-      for (var j = 0; j != 10; ++j) {
-        ll.remove(1000);
-        ll.remove(69);
-        ll.remove(420);
-        ll.remove(2000);
-        ll.remove(42);
-        ll.remove(13);
-        ll.remove(69);
-        ll.remove(720);
-        ll.remove(850);
+      for (int j = Main.size - 1; j >= 0; j -= 4) {
+        ll.remove(j);
       }
       final var end = System.nanoTime();
       Main.llDelTimes[i] = end - start;
     }
+    System.out.println("LinkedList insert");
     for (var i = 0; i < Main.llInsTimes.length; ++i) {
       final var ll = Main.createLL(Main.size);
       final var start = System.nanoTime();
-      for (var j = 0; j != 10; ++j) {
-        ll.add(1000, _69420);
-        ll.add(69, _42);
-        ll.add(420, _69);
-        ll.add(2000, _69420);
-        ll.add(42, _420);
-        ll.add(13, _69);
-        ll.add(69, _69420);
-        ll.add(720, _42);
-        ll.add(850, _420);
+      for (var j = 0; j < Main.size; j += 4) {
+        ll.add(j, _42);
       }
       final var end = System.nanoTime();
       Main.llInsTimes[i] = end - start;
     }
 
-    Main.removeArrIdx(a, 2);
-    Main.insertArrIdx(a, 2, _69420);
-
+    System.out.println("Array delete");
     for (var i = 0; i < Main.aDelTimes.length; ++i) {
       final var arr = Main.createA(Main.size);
       final var start = System.nanoTime();
-      for (var j = 0; j != 10; ++j) {
-        Main.removeArrIdx(arr, 1000);
-        Main.removeArrIdx(arr, 69);
-        Main.removeArrIdx(arr, 420);
-        Main.removeArrIdx(arr, 2000);
-        Main.removeArrIdx(arr, 42);
-        Main.removeArrIdx(arr, 13);
-        Main.removeArrIdx(arr, 69);
-        Main.removeArrIdx(arr, 720);
-        Main.removeArrIdx(arr, 850);
+      for (int j = Main.size - 1; j >= 0; j -= 4) {
+        Main.removeArrIdx(arr, j);
       }
       final var end = System.nanoTime();
       Main.aDelTimes[i] = end - start;
     }
+    System.out.println("Array insert");
     for (var i = 0; i < Main.aInsTimes.length; ++i) {
       final var arr = Main.createA(Main.size);
       final var start = System.nanoTime();
-      for (var j = 0; j != 10; ++j) {
-        Main.insertArrIdx(arr, 1000, _69420);
-        Main.insertArrIdx(arr, 69, _42);
-        Main.insertArrIdx(arr, 420, _69);
-        Main.insertArrIdx(arr, 2000, _69420);
-        Main.insertArrIdx(arr, 42, _420);
-        Main.insertArrIdx(arr, 13, _69);
-        Main.insertArrIdx(arr, 69, _69420);
-        Main.insertArrIdx(arr, 720, _42);
-        Main.insertArrIdx(arr, 850, _420);
+      for (var j = 0; j < Main.size; j += 4) {
+        Main.insertArrIdx(arr, j, _420);
       }
       final var end = System.nanoTime();
       Main.aInsTimes[i] = end - start;
